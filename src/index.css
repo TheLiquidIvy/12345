@@ -1,0 +1,304 @@
+/**
+ * =====================================
+ *      PIXELPLAQUE DESIGN SYSTEM
+ * =====================================
+ * 
+ * Project: PixelPlaque Business Website
+ * Type: Corporate Portfolio/Business
+ * 
+ * DESIGN PHILOSOPHY
+ * -----------------
+ * Core Principle: Cyberpunk meets professionalism - "Code. Design. Disturb the Algorithm"
+ * Design Style: Glitchcore/Cyberpunk with playful sass
+ * Emotion Goal: Edgy, modern, memorable, slightly rebellious yet professional
+ * 
+ * COLOR SYSTEM (HSL FORMAT)
+ * -------------
+ * Magenta: 328 100% 54% - Primary brand color, electric energy
+ * Cyan: 180 100% 50% - Secondary accent, digital coolness  
+ * Lime: 84 100% 59% - Tertiary accent, neon highlight
+ * Dark BG: 250 40% 6% - Deep purple-black background
+ * Light BG: 0 0% 98% - Clean white for light mode
+ * 
+ * TYPOGRAPHY
+ * ----------
+ * Display: Bold, geometric, tech-forward
+ * Body: Clean, readable, modern sans-serif
+ * 
+ * INTERACTIONS
+ * ------------
+ * Transitions: 200-300ms with glitch effects
+ * States: Glowing borders, neon highlights
+ * Glitch: Random text distortions and color shifts
+ * ====================================
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 250 40% 6%;
+    --card: 0 0% 100%;
+    --card-foreground: 250 40% 6%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 250 40% 6%;
+    --primary: 328 100% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 250 40% 6%;
+    --accent: 84 100% 59%;
+    --accent-foreground: 250 40% 6%;
+    --muted: 250 10% 90%;
+    --muted-foreground: 250 10% 40%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 250 20% 85%;
+    --input: 250 20% 85%;
+    --ring: 328 100% 54%;
+    --radius: 0.5rem;
+    
+    /* Custom cyberpunk variables */
+    --glow-magenta: 328 100% 54%;
+    --glow-cyan: 180 100% 50%;
+    --glow-lime: 84 100% 59%;
+    --cyber-grid: 250 30% 15%;
+  }
+  
+  .dark {
+    --background: 250 40% 6%;
+    --foreground: 0 0% 98%;
+    --card: 250 35% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 250 35% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 328 100% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 250 40% 6%;
+    --accent: 84 100% 59%;
+    --accent-foreground: 250 40% 6%;
+    --muted: 250 30% 15%;
+    --muted-foreground: 250 10% 65%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 250 30% 20%;
+    --input: 250 30% 20%;
+    --ring: 328 100% 54%;
+    
+    /* Enhanced glow for dark mode */
+    --glow-magenta: 328 100% 54%;
+    --glow-cyan: 180 100% 50%;
+    --glow-lime: 84 100% 59%;
+    --cyber-grid: 250 30% 15%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 700;
+  }
+}
+
+/* Cyberpunk Glitch Effects */
+@layer utilities {
+  .glow-magenta {
+    text-shadow: 0 0 10px hsl(var(--glow-magenta)), 0 0 20px hsl(var(--glow-magenta));
+  }
+  
+  .glow-cyan {
+    text-shadow: 0 0 10px hsl(var(--glow-cyan)), 0 0 20px hsl(var(--glow-cyan));
+  }
+  
+  .glow-lime {
+    text-shadow: 0 0 10px hsl(var(--glow-lime)), 0 0 20px hsl(var(--glow-lime));
+  }
+  
+  .glow-box-magenta {
+    box-shadow: 0 0 20px hsl(var(--glow-magenta) / 0.3), 0 0 40px hsl(var(--glow-magenta) / 0.1);
+  }
+  
+  .glow-box-cyan {
+    box-shadow: 0 0 20px hsl(var(--glow-cyan) / 0.3), 0 0 40px hsl(var(--glow-cyan) / 0.1);
+  }
+  
+  .glow-box-lime {
+    box-shadow: 0 0 20px hsl(var(--glow-lime) / 0.3), 0 0 40px hsl(var(--glow-lime) / 0.1);
+  }
+  
+  .border-glow-magenta {
+    border-color: hsl(var(--glow-magenta));
+    box-shadow: 0 0 10px hsl(var(--glow-magenta) / 0.5), inset 0 0 10px hsl(var(--glow-magenta) / 0.2);
+  }
+  
+  .border-glow-cyan {
+    border-color: hsl(var(--glow-cyan));
+    box-shadow: 0 0 10px hsl(var(--glow-cyan) / 0.5), inset 0 0 10px hsl(var(--glow-cyan) / 0.2);
+  }
+  
+  .border-glow-lime {
+    border-color: hsl(var(--glow-lime));
+    box-shadow: 0 0 10px hsl(var(--glow-lime) / 0.5), inset 0 0 10px hsl(var(--glow-lime) / 0.2);
+  }
+  
+  .glitch {
+    position: relative;
+    animation: glitch-anim 3s infinite;
+  }
+  
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .glitch::before {
+    animation: glitch-anim-1 2s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    transform: translate(-2px, -2px);
+    text-shadow: 2px 0 hsl(var(--glow-cyan));
+  }
+  
+  .glitch::after {
+    animation: glitch-anim-2 3s infinite;
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    transform: translate(2px, 2px);
+    text-shadow: -2px 0 hsl(var(--glow-magenta));
+  }
+  
+  @keyframes glitch-anim {
+    0%, 100% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+  }
+  
+  @keyframes glitch-anim-1 {
+    0%, 100% {
+      transform: translate(0);
+      opacity: 0.8;
+    }
+    10% {
+      transform: translate(-5px, -2px);
+      opacity: 1;
+    }
+    20% {
+      transform: translate(5px, 2px);
+      opacity: 0.8;
+    }
+  }
+  
+  @keyframes glitch-anim-2 {
+    0%, 100% {
+      transform: translate(0);
+      opacity: 0.8;
+    }
+    15% {
+      transform: translate(5px, -2px);
+      opacity: 1;
+    }
+    25% {
+      transform: translate(-5px, 2px);
+      opacity: 0.8;
+    }
+  }
+  
+  .cyber-grid {
+    background-image: 
+      linear-gradient(hsl(var(--cyber-grid)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--cyber-grid)) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  .scan-line {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .scan-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--glow-cyan)), transparent);
+    animation: scan 3s linear infinite;
+  }
+  
+  @keyframes scan {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+  
+  /* Highlight random words effect */
+  .highlight-word {
+    color: hsl(var(--primary));
+    font-weight: 600;
+    animation: word-glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes word-glow {
+    0% {
+      text-shadow: 0 0 5px hsl(var(--primary) / 0.5);
+    }
+    100% {
+      text-shadow: 0 0 15px hsl(var(--primary)), 0 0 25px hsl(var(--primary) / 0.5);
+    }
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--secondary));
+}
+
+/* Selection colors */
+::selection {
+  background: hsl(var(--primary) / 0.3);
+  color: hsl(var(--foreground));
+}
