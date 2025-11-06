@@ -32,6 +32,8 @@ function BlogPage() {
   const { isAuthenticated } = useAuth();
   const [open, setOpen] = useState(false);
   const [editingPost, setEditingPost] = useState<Post | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
   const [posts, setPosts] = useState<Post[]>([
     {
@@ -155,6 +157,10 @@ function BlogPage() {
             {filteredPosts.map((post) => (
               <div key={post.id} className="relative">
                 <Card 
+                  onClick={() => {
+                    setSelectedPost(post);
+                    setModalOpen(true);
+                  }}
                   className="group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 overflow-hidden bg-card/50 backdrop-blur"
                 >
                   <div className="relative aspect-video overflow-hidden bg-muted">
@@ -194,7 +200,8 @@ function BlogPage() {
                     <Button
                       size="icon"
                       variant="outline"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setEditingPost(post);
                         setOpen(true);
                       }}
@@ -204,7 +211,10 @@ function BlogPage() {
                     <Button
                       size="icon"
                       variant="destructive"
-                      onClick={() => handleDeletePost(post.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeletePost(post.id)
+                      }}
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
@@ -215,6 +225,16 @@ function BlogPage() {
           </div>
         </div>
       </section>
+      <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+        <DialogContent>
+          {selectedPost && (
+            <>
+              <img src={selectedPost.image} alt={selectedPost.title} className="w-full h-auto object-cover" />
+              <p className="text-sm text-muted-foreground mt-4">{selectedPost.excerpt}</p>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

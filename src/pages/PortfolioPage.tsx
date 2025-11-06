@@ -4,7 +4,6 @@ import { ExternalLink, PlusCircle, Edit, Trash2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { HighlightedText } from '@/lib/highlight-words';
-import { Link } from 'react-router-dom';
 import { useAuth } from '@/hooks/use-auth';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ProjectForm } from "@/components/ProjectForm";
@@ -32,6 +31,8 @@ function PortfolioPage() {
   const { isAuthenticated } = useAuth();
   const [open, setOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const [projects, setProjects] = useState<Project[]>([
     {
@@ -186,58 +187,60 @@ function PortfolioPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
               <div key={project.id} className="relative">
-                <Link to={`/portfolio/${project.id}`}>
-                  <Card 
-                    className={`group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 overflow-hidden bg-card/50 backdrop-blur border-2 ${project.color}`}
-                  >
-                    <div className="relative aspect-video overflow-hidden bg-muted">
-                      <img 
-                        src={project.image} 
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <Button
-                          size="sm" 
-                          variant="outline"
-                          className="border-white text-white hover:bg-white hover:text-black"
-                        >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          View Project
-                        </Button>
-                      </div>
+                <Card 
+                  onClick={() => {
+                    setSelectedProject(project);
+                    setModalOpen(true);
+                  }}
+                  className={`group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 overflow-hidden bg-card/50 backdrop-blur border-2 ${project.color}`}>
+                  <div className="relative aspect-video overflow-hidden bg-muted">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                      <Button
+                        size="sm" 
+                        variant="outline"
+                        className="border-white text-white hover:bg-white hover:text-black"
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        View Project
+                      </Button>
                     </div>
-                    <CardContent className="p-6 space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-semibold text-primary uppercase tracking-wider">
-                          {project.category}
+                  </div>
+                  <CardContent className="p-6 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold text-primary uppercase tracking-wider">
+                        {project.category}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {project.tags.map((tag, index) => (
+                        <span 
+                          key={index}
+                          className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground"
+                        >
+                          {tag}
                         </span>
-                      </div>
-                      <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground line-clamp-2">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 pt-2">
-                        {project.tags.map((tag, index) => (
-                          <span 
-                            key={index}
-                            className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
                 {isAuthenticated && (
                   <div className="absolute top-4 right-4 flex gap-2">
                     <Button
                       size="icon"
                       variant="outline"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setEditingProject(project);
                         setOpen(true);
                       }}
@@ -247,7 +250,10 @@ function PortfolioPage() {
                     <Button
                       size="icon"
                       variant="destructive"
-                      onClick={() => handleDeleteProject(project.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteProject(project.id)
+                      }}
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
@@ -258,6 +264,16 @@ function PortfolioPage() {
           </div>
         </div>
       </section>
+      <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+        <DialogContent>
+          {selectedProject && (
+            <>
+              <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-auto object-cover" />
+              <p className="text-sm text-muted-foreground mt-4">{selectedProject.description}</p>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
