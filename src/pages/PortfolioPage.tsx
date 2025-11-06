@@ -101,7 +101,10 @@ function PortfolioPage() {
   const handleAddProject = (values: z.infer<typeof formSchema>) => {
     const newProject: Project = {
       id: projects.length + 1,
-      ...values,
+      title: values.title,
+      category: values.category,
+      description: values.description,
+      image: values.image,
       tags: values.tags.split(',').map(tag => tag.trim()),
       color: 'border-primary/50',
     };
@@ -110,12 +113,10 @@ function PortfolioPage() {
   };
 
   const handleEditProject = (values: z.infer<typeof formSchema>) => {
-    const updatedProjects = projects.map(project =>
-      project.id === editingProject!.id
-        ? { ...project, ...values, tags: values.tags.split(',').map(tag => tag.trim()) }
-        : project
+    const updatedProjects = projects.map(p => 
+      p.id === editingProject!.id ? { ...p, ...values, tags: values.tags.split(',').map(tag => tag.trim()) } : p
     );
-    setProjects(updatedProjects);
+    setProjects(updatedProjects as Project[]);
     setEditingProject(null);
     setOpen(false);
   };

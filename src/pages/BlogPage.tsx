@@ -1,12 +1,12 @@
 
 import { useState } from 'react';
-import { ArrowRight, Edit, PlusCircle, Trash2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Calendar, Clock, ArrowRight, PlusCircle, Edit, Trash2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { HighlightedText } from '@/lib/highlight-words';
+import { useAuth } from '@/hooks/use-auth';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { PostForm } from "@/components/PostForm";
-import { useAuth } from '@/hooks/use-auth';
-import { HighlightedText } from '@/lib/highlight-words';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -66,7 +66,11 @@ function BlogPage() {
   const handleAddPost = (values: z.infer<typeof formSchema>) => {
     const newPost: Post = {
       id: posts.length + 1,
-      ...values,
+      title: values.title,
+      excerpt: values.excerpt,
+      category: values.category,
+      image: values.image,
+      readTime: values.readTime,
       date: new Date(),
       author: 'PixelPlaque Team',
     };
@@ -75,10 +79,12 @@ function BlogPage() {
   };
 
   const handleEditPost = (values: z.infer<typeof formSchema>) => {
-    const updatedPosts = posts.map(p => 
-      p.id === editingPost!.id ? { ...p, ...values, date: new Date(p.date) } : p
+    const updatedPosts = posts.map(post =>
+      post.id === editingPost!.id
+        ? { ...post, ...values, date: new Date(post.date) }
+        : post
     );
-    setPosts(updatedPosts);
+    setPosts(updatedPosts as Post[]);
     setEditingPost(null);
     setOpen(false);
   };
