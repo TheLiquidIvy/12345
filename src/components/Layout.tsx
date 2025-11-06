@@ -1,14 +1,16 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
-import { Menu, X, Sun, Moon, Zap } from 'lucide-react';
+import { Menu, X, Sun, Moon, Zap, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useThemeStore } from '@/store/theme-store';
+import { useAuth } from '@/hooks/use-auth';
 import { cn } from '@/lib/utils';
 
 export function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useThemeStore();
+  const { isAuthenticated } = useAuth();
   const location = useLocation();
 
   // Close mobile menu on route change
@@ -67,6 +69,22 @@ export function Layout() {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary group-hover:w-full transition-all duration-300" />
                 </Link>
               ))}
+
+              {isAuthenticated ? (
+                <Link to="/admin/dashboard">
+                  <Button variant="outline" className="border-primary/50 hover:border-primary">
+                    <User className="w-4 h-4 mr-2" />
+                    Dashboard
+                  </Button>
+                </Link>
+              ) : (
+                <Link to="/login">
+                  <Button variant="outline" className="border-primary/50 hover:border-primary">
+                    <User className="w-4 h-4 mr-2" />
+                    Login
+                  </Button>
+                </Link>
+              )}
               
               {/* Theme Toggle */}
               <Button
@@ -136,6 +154,23 @@ export function Layout() {
                     {link.label}
                   </Link>
                 ))}
+                <div className="border-t border-border/50 pt-4">
+                  {isAuthenticated ? (
+                    <Link to="/admin/dashboard">
+                      <Button variant="outline" className="w-full border-primary/50 hover:border-primary">
+                        <User className="w-4 h-4 mr-2" />
+                        Dashboard
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Link to="/login">
+                      <Button variant="outline" className="w-full border-primary/50 hover:border-primary">
+                        <User className="w-4 h-4 mr-2" />
+                        Login
+                      </Button>
+                    </Link>
+                  )}
+                </div>
               </div>
             </div>
           )}
