@@ -1,11 +1,12 @@
-import { ExternalLink, Code, Palette, TrendingUp } from 'lucide-react';
+
+import { useState } from 'react';
+import { ExternalLink } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { HighlightedText } from '@/lib/highlight-words';
 import { Link } from 'react-router-dom';
 
 function PortfolioPage() {
-  // Mock portfolio data - will be replaced with database in Phase 2
   const projects = [
     {
       id: 1,
@@ -65,9 +66,14 @@ function PortfolioPage() {
 
   const categories = ['All', 'Web Development', 'Web Design', 'Graphic Design', 'Content Creation', 'SEO Marketing'];
 
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const filteredProjects = selectedCategory === 'All'
+    ? projects
+    : projects.filter(project => project.category === selectedCategory);
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 cyber-grid opacity-20" />
         <div className="container mx-auto px-4 relative z-10">
@@ -76,7 +82,7 @@ function PortfolioPage() {
               <HighlightedText>Our Work Speaks</HighlightedText>
             </h1>
             <p className="text-xl text-muted-foreground">
-              From bold brands to high-performing websites, here's a taste of what we've built. 
+              From bold brands to high-performing websites, here's a taste of what we've built.
               Spoiler: it's all killer, zero filler.
             </p>
           </div>
@@ -85,16 +91,16 @@ function PortfolioPage() {
         <div className="absolute bottom-20 right-10 w-64 h-64 bg-secondary/20 rounded-full blur-[120px]" />
       </section>
 
-      {/* Filter Section */}
       <section className="py-8 bg-muted/30 sticky top-[73px] z-40 backdrop-blur-lg border-b border-border/50">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap gap-3 justify-center">
             {categories.map((category) => (
               <Button
                 key={category}
-                variant={category === 'All' ? 'default' : 'outline'}
+                variant={selectedCategory === category ? 'default' : 'outline'}
                 size="sm"
-                className={category === 'All' ? 'bg-primary hover:bg-primary/90' : 'border-primary/30 hover:border-primary'}
+                className={selectedCategory === category ? 'bg-primary hover:bg-primary/90' : 'border-primary/30 hover:border-primary'}
+                onClick={() => setSelectedCategory(category)}
               >
                 {category}
               </Button>
@@ -103,11 +109,10 @@ function PortfolioPage() {
         </div>
       </section>
 
-      {/* Portfolio Grid */}
       <section className="py-12 pb-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
+            {filteredProjects.map((project) => (
               <Link to={`/portfolio/${project.id}`} key={project.id}>
                 <Card 
                   className={`group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 overflow-hidden bg-card/50 backdrop-blur border-2 ${project.color}`}
@@ -119,7 +124,7 @@ function PortfolioPage() {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                      <Button geo
+                      <Button
                         size="sm" 
                         variant="outline"
                         className="border-white text-white hover:bg-white hover:text-black"
@@ -155,24 +160,6 @@ function PortfolioPage() {
                 </Card>
               </Link>
             ))}
-          </div>
-
-          {/* Note about coming features */}
-          <div className="mt-16 text-center">
-            <Card className="max-w-2xl mx-auto border-primary/30 bg-card/50 backdrop-blur">
-              <CardContent className="p-8">
-                <div className="flex items-center justify-center gap-3 mb-4">
-                  <Code className="w-6 h-6 text-primary" />
-                  <Palette className="w-6 h-6 text-secondary" />
-                  <TrendingUp className="w-6 h-6 text-accent" />
-                </div>
-                <h3 className="text-2xl font-bold mb-2">More Coming Soon</h3>
-                <p className="text-muted-foreground">
-                  This is just a sample of our work. Full portfolio management and filtering features 
-                  are coming in the next phase. Stay tuned!
-                </p>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
