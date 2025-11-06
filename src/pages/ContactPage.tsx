@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Mail, MapPin, Clock, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -22,22 +23,43 @@ function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    toast({
-      title: 'Message Sent! 🚀',
-      description: "We'll get back to you faster than you can say 'disturb the algorithm'.",
-    });
+      if (response.ok) {
+        toast({
+          title: 'Message Sent! 🚀',
+          description: "We'll get back to you faster than you can say 'disturb the algorithm'.",
+        });
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          service: '',
+          message: '',
+        });
+      } else {
+        toast({
+          title: 'Error',
+          description: 'Something went wrong. Please try again later.',
+          variant: 'destructive',
+        });
+      }
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'Something went wrong. Please try again later.',
+        variant: 'destructive',
+      });
+    }
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      service: '',
-      message: '',
-    });
     setIsSubmitting(false);
   };
 
