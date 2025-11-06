@@ -1,23 +1,47 @@
 
-import { Button } from '@/components/ui/button';
-import { useAuth } from '@/hooks/use-auth';
-import { useNavigate } from 'react-router-dom';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/use-auth";
+import { Link } from "react-router-dom";
 
 function AdminDashboardPage() {
-  const { logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
+  const { user, logout } = useAuth();
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Admin Dashboard</h1>
-        <p className="text-lg mb-8">Welcome to the admin dashboard.</p>
-        <Button onClick={handleLogout}>Logout</Button>
+    <div className="min-h-screen py-12">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-3xl font-bold">Admin Dashboard</h1>
+            <p className="text-muted-foreground">Welcome, {user?.email}</p>
+          </div>
+          <Button onClick={logout} variant="destructive">Logout</Button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Portfolio Management</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Manage your portfolio projects.</p>
+              <Button asChild className="mt-4">
+                <Link to="/portfolio">Go to Portfolio</Link>
+              </Button>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Blog Management</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Manage your blog posts.</p>
+              <Button asChild className="mt-4">
+                <Link to="/blog">Go to Blog</Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
