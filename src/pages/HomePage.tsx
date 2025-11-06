@@ -1,8 +1,11 @@
+
 import { Link } from 'react-router-dom';
-import { ArrowRight, Code, Palette, TrendingUp, FileText, Search } from 'lucide-react';
+import { ArrowRight, Code, Palette, Search, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { HighlightedText } from '@/lib/highlight-words';
+import { Parallax } from '@/components/animation/Parallax';
+import { Particle } from '@/components/animation/Particle';
 
 function HomePage() {
   const services = [
@@ -40,89 +43,95 @@ function HomePage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Cyber Grid Background */}
-        <div className="absolute inset-0 cyber-grid opacity-20" />
-        
-        {/* Scan Line Effect */}
-        <div className="scan-line absolute inset-0 pointer-events-none" />
+        <Parallax offset={50}>
+          {/* Cyber Grid Background */}
+          <div className="absolute inset-0 cyber-grid opacity-20" />
+          
+          {/* Scan Line Effect */}
+          <div className="scan-line absolute inset-0 pointer-events-none" />
 
-        {/* Content */}
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            {/* Glitch Title */}
-            <h1 
-              className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight glitch"
-              data-text="PixelPlaque"
-            >
-              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-                PixelPlaque
-              </span>
-            </h1>
-
-            {/* Slogan */}
-            <p className="text-2xl md:text-3xl font-semibold text-foreground/90">
-              <HighlightedText highlightChance={0.3}>
-                Code. Design. Disturb the Algorithm.
-              </HighlightedText>
-            </p>
-
-            {/* Description */}
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              We're not your average agency. We craft digital experiences that break conventions, 
-              challenge norms, and make algorithms nervous.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-              <Button 
-                asChild 
-                size="lg" 
-                className="bg-primary hover:bg-primary/90 text-white group relative overflow-hidden"
+          {/* Content */}
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto text-center space-y-8">
+              {/* Glitch Title */}
+              <h1 
+                className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight glitch"
+                data-text="PixelPlaque"
               >
-                <Link to="/contact">
-                  <span className="relative z-10 flex items-center gap-2">
-                    Start a Project
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity blur-xl" />
-                </Link>
-              </Button>
-              <Button 
-                asChild 
-                size="lg" 
-                variant="outline"
-                className="border-2 border-secondary hover:border-secondary hover:bg-secondary/10 group"
-              >
-                <Link to="/portfolio">
-                  <span className="flex items-center gap-2">
-                    View Our Work
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Link>
-              </Button>
-            </div>
+                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                  PixelPlaque
+                </span>
+              </h1>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-12 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary glow-magenta">500+</div>
-                <div className="text-sm text-muted-foreground mt-1">Projects</div>
+              {/* Slogan */}
+              <p className="text-2xl md:text-3xl font-semibold text-foreground/90">
+                <HighlightedText highlightChance={0.3}>
+                  Code. Design. Disturb the Algorithm.
+                </HighlightedText>
+              </p>
+
+              {/* Description */}
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+                We're not your average agency. We craft digital experiences that break conventions, 
+                challenge norms, and make algorithms nervous.
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+                <Particle>
+                  <Button 
+                    asChild 
+                    size="lg" 
+                    className="bg-primary hover:bg-primary/90 text-white group relative overflow-hidden"
+                  >
+                    <Link to="/contact">
+                      <span className="relative z-10 flex items-center gap-2">
+                        Start a Project
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity blur-xl" />
+                    </Link>
+                  </Button>
+                </Particle>
+                <Particle>
+                  <Button 
+                    asChild 
+                    size="lg" 
+                    variant="outline"
+                    className="border-2 border-secondary hover:border-secondary hover:bg-secondary/10 group"
+                  >
+                    <Link to="/portfolio">
+                      <span className="flex items-center gap-2">
+                        View Our Work
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </Link>
+                  </Button>
+                </Particle>
               </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-secondary glow-cyan">200+</div>
-                <div className="text-sm text-muted-foreground mt-1">Clients</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-accent glow-lime">99%</div>
-                <div className="text-sm text-muted-foreground mt-1">Satisfaction</div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-4 pt-12 max-w-2xl mx-auto">
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-primary glow-magenta">500+</div>
+                  <div className="text-sm text-muted-foreground mt-1">Projects</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-secondary glow-cyan">200+</div>
+                  <div className="text-sm text-muted-foreground mt-1">Clients</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-accent glow-lime">99%</div>
+                  <div className="text-sm text-muted-foreground mt-1">Satisfaction</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Decorative Elements */}
-        <div className="absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-64 h-64 bg-secondary/20 rounded-full blur-[120px] animate-pulse delay-1000" />
+          {/* Decorative Elements */}
+          <div className="absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-20 right-10 w-64 h-64 bg-secondary/20 rounded-full blur-[120px] animate-pulse delay-1000" />
+        </Parallax>
       </section>
 
       {/* Services Section */}
