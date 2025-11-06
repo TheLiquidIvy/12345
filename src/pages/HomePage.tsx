@@ -100,7 +100,7 @@ function HomePage() {
                     variant="outline"
                     className="border-2 border-secondary hover:border-secondary hover:bg-secondary/10 group"
                   >
-                    <Link to="/portfolio">
+                    <Link to="/PortfolioPage">
                       <span className="flex items-center gap-2">
                         View Our Work
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
