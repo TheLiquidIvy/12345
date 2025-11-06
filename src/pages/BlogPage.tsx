@@ -17,12 +17,23 @@ const formSchema = z.object({
   readTime: z.string().min(1, "Read time is required"),
 });
 
+interface Post {
+  id: number;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: Date;
+  readTime: string;
+  image: string;
+  author: string;
+}
+
 function BlogPage() {
   const { isAuthenticated } = useAuth();
   const [open, setOpen] = useState(false);
-  const [editingPost, setEditingPost] = useState<any>(null);
+  const [editingPost, setEditingPost] = useState<Post | null>(null);
 
-  const [posts, setPosts] = useState([
+  const [posts, setPosts] = useState<Post[]>([
     {
       id: 1,
       title: 'Why Your Website Needs a Personality (Not Just a Template)',
@@ -53,7 +64,7 @@ function BlogPage() {
     : posts.filter(post => post.category === selectedCategory);
 
   const handleAddPost = (values: z.infer<typeof formSchema>) => {
-    const newPost = {
+    const newPost: Post = {
       id: posts.length + 1,
       ...values,
       date: new Date(),
@@ -65,8 +76,8 @@ function BlogPage() {
 
   const handleEditPost = (values: z.infer<typeof formSchema>) => {
     const updatedPosts = posts.map(post =>
-      post.id === editingPost.id
-        ? { ...post, ...values, id: editingPost.id }
+      post.id === editingPost!.id
+        ? { ...post, ...values }
         : post
     );
     setPosts(updatedPosts);

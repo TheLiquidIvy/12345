@@ -18,12 +18,22 @@ const formSchema = z.object({
   tags: z.string(),
 });
 
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  description: string;
+  image: string;
+  tags: string[];
+  color: string;
+}
+
 function PortfolioPage() {
   const { isAuthenticated } = useAuth();
   const [open, setOpen] = useState(false);
-  const [editingProject, setEditingProject] = useState<any>(null);
+  const [editingProject, setEditingProject] = useState<Project | null>(null);
 
-  const [projects, setProjects] = useState([
+  const [projects, setProjects] = useState<Project[]>([
     {
       id: 1,
       title: 'TechFlow SaaS Platform',
@@ -89,7 +99,7 @@ function PortfolioPage() {
     : projects.filter(project => project.category === selectedCategory);
 
   const handleAddProject = (values: z.infer<typeof formSchema>) => {
-    const newProject = {
+    const newProject: Project = {
       id: projects.length + 1,
       ...values,
       tags: values.tags.split(',').map(tag => tag.trim()),
@@ -101,8 +111,8 @@ function PortfolioPage() {
 
   const handleEditProject = (values: z.infer<typeof formSchema>) => {
     const updatedProjects = projects.map(project =>
-      project.id === editingProject.id
-        ? { ...project, ...values, id: editingProject.id, tags: values.tags.split(',').map(tag => tag.trim()) }
+      project.id === editingProject!.id
+        ? { ...project, ...values, tags: values.tags.split(',').map(tag => tag.trim()) }
         : project
     );
     setProjects(updatedProjects);
