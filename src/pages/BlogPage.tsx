@@ -1,12 +1,12 @@
 
 import { useState } from 'react';
-import { Calendar, Clock, ArrowRight, PlusCircle, Edit, Trash2 } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { ArrowRight, Edit, PlusCircle, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { HighlightedText } from '@/lib/highlight-words';
-import { useAuth } from '@/hooks/use-auth';
+import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { PostForm } from "@/components/PostForm";
+import { useAuth } from '@/hooks/use-auth';
+import { HighlightedText } from '@/lib/highlight-words';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -75,9 +75,8 @@ function BlogPage() {
   };
 
   const handleEditPost = (values: z.infer<typeof formSchema>) => {
-    if (!editingPost) return;
-    const updatedPosts = posts.map(p =>
-      p.id === editingPost.id ? { ...p, ...values } : p
+    const updatedPosts = posts.map(p => 
+      p.id === editingPost!.id ? { ...p, ...values, date: new Date(p.date) } : p
     );
     setPosts(updatedPosts);
     setEditingPost(null);
@@ -173,7 +172,7 @@ function BlogPage() {
                     </p>
                     <div className="flex items-center justify-between pt-2">
                       <span className="text-xs text-muted-foreground">
-                        {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        {post.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                       </span>
                       <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80 group/btn p-0 h-auto">
                         <span className="flex items-center gap-1">
