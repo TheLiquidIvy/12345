@@ -4,6 +4,7 @@ import { Layout } from '@/components/Layout';
 import HomePage from '@/pages/HomePage';
 import ServicesPage from '@/pages/ServicesPage';
 import PortfolioPage from '@/pages/PortfolioPage';
+import PortfolioDetailPage from '@/pages/PortfolioDetailPage';
 import AboutPage from '@/pages/AboutPage';
 import BlogPage from '@/pages/BlogPage';
 import ContactPage from '@/pages/ContactPage';
@@ -29,6 +30,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
+            <Route path="/portfolio/:id" element={<PortfolioDetailPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/contact" element={<ContactPage />} />

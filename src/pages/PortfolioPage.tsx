@@ -1,13 +1,29 @@
 
 import { useState } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, PlusCircle, Edit, Trash2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { HighlightedText } from '@/lib/highlight-words';
 import { Link } from 'react-router-dom';
+import { useAuth } from '@/hooks/use-auth';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ProjectForm } from "@/components/ProjectForm";
+import { z } from 'zod';
+
+const formSchema = z.object({
+  title: z.string().min(1, "Title is required"),
+  category: z.string().min(1, "Category is required"),
+  description: z.string().min(1, "Description is required"),
+  image: z.string().url("Invalid URL"),
+  tags: z.string(),
+});
 
 function PortfolioPage() {
-  const projects = [
+  const { isAuthenticated } = useAuth();
+  const [open, setOpen] = useState(false);
+  const [editingProject, setEditingProject] = useState<any>(null);
+
+  const [projects, setProjects] = useState([
     {
       id: 1,
       title: 'TechFlow SaaS Platform',
@@ -62,7 +78,7 @@ function PortfolioPage() {
       tags: ['React', 'Web3', 'API Integration'],
       color: 'border-accent/50',
     },
-  ];
+  ]);
 
   const categories = ['All', 'Web Development', 'Web Design', 'Graphic Design', 'Content Creation', 'SEO Marketing'];
 
@@ -71,6 +87,32 @@ function PortfolioPage() {
   const filteredProjects = selectedCategory === 'All'
     ? projects
     : projects.filter(project => project.category === selectedCategory);
+
+  const handleAddProject = (values: z.infer<typeof formSchema>) => {
+    const newProject = {
+      id: projects.length + 1,
+      ...values,
+      tags: values.tags.split(',').map(tag => tag.trim()),
+      color: 'border-primary/50',
+    };
+    setProjects([...projects, newProject]);
+    setOpen(false);
+  };
+
+  const handleEditProject = (values: z.infer<typeof formSchema>) => {
+    const updatedProjects = projects.map(project =>
+      project.id === editingProject.id
+        ? { ...project, ...values, tags: values.tags.split(',').map(tag => tag.trim()) }
+        : project
+    );
+    setProjects(updatedProjects);
+    setEditingProject(null);
+    setOpen(false);
+  };
+
+  const handleDeleteProject = (id: number) => {
+    setProjects(projects.filter(project => project.id !== id));
+  };
 
   return (
     <div className="min-h-screen">
@@ -105,6 +147,25 @@ function PortfolioPage() {
                 {category}
               </Button>
             ))}
+            {isAuthenticated && (
+              <Dialog open={open} onOpenChange={setOpen}>
+                <DialogTrigger asChild>
+                  <Button size="sm" className="ml-auto" onClick={() => setEditingProject(null)}>
+                    <PlusCircle className="w-4 h-4 mr-2" />
+                    Add Project
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>{editingProject ? 'Edit Project' : 'Add New Project'}</DialogTitle>
+                  </DialogHeader>
+                  <ProjectForm
+                    onSubmit={editingProject ? handleEditProject : handleAddProject}
+                    initialValues={editingProject ? { ...editingProject, tags: editingProject.tags.join(', ') } : undefined}
+                  />
+                </DialogContent>
+              </Dialog>
+            )}
           </div>
         </div>
       </section>
@@ -113,52 +174,75 @@ function PortfolioPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
-              <Link to={`/portfolio/${project.id}`} key={project.id}>
-                <Card 
-                  className={`group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 overflow-hidden bg-card/50 backdrop-blur border-2 ${project.color}`}
-                >
-                  <div className="relative aspect-video overflow-hidden bg-muted">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                      <Button
-                        size="sm" 
-                        variant="outline"
-                        className="border-white text-white hover:bg-white hover:text-black"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        View Project
-                      </Button>
-                    </div>
-                  </div>
-                  <CardContent className="p-6 space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold text-primary uppercase tracking-wider">
-                        {project.category}
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {project.tags.map((tag, index) => (
-                        <span 
-                          key={index}
-                          className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground"
+              <div key={project.id} className="relative">
+                <Link to={`/portfolio/${project.id}`}>
+                  <Card 
+                    className={`group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 overflow-hidden bg-card/50 backdrop-blur border-2 ${project.color}`}
+                  >
+                    <div className="relative aspect-video overflow-hidden bg-muted">
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <Button
+                          size="sm" 
+                          variant="outline"
+                          className="border-white text-white hover:bg-white hover:text-black"
                         >
-                          {tag}
-                        </span>
-                      ))}
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          View Project
+                        </Button>
+                      </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </Link>
+                    <CardContent className="p-6 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-semibold text-primary uppercase tracking-wider">
+                          {project.category}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        {project.tags.map((tag, index) => (
+                          <span 
+                            key={index}
+                            className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+                {isAuthenticated && (
+                  <div className="absolute top-4 right-4 flex gap-2">
+                    <Button
+                      size="icon"
+                      variant="outline"
+                      onClick={() => {
+                        setEditingProject(project);
+                        setOpen(true);
+                      }}
+                    >
+                      <Edit className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      size="icon"
+                      variant="destructive"
+                      onClick={() => handleDeleteProject(project.id)}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
