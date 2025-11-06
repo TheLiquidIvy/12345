@@ -102,7 +102,7 @@ function PortfolioPage() {
   const handleEditProject = (values: z.infer<typeof formSchema>) => {
     const updatedProjects = projects.map(project =>
       project.id === editingProject.id
-        ? { ...project, ...values, tags: values.tags.split(',').map(tag => tag.trim()) }
+        ? { ...project, ...values, id: editingProject.id, tags: values.tags.split(',').map(tag => tag.trim()) }
         : project
     );
     setProjects(updatedProjects);
