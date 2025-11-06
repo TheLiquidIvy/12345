@@ -1,4 +1,3 @@
-
 import { create } from 'zustand';
 
 interface AuthState {
@@ -11,6 +10,14 @@ interface AuthState {
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   isAuthenticated: false,
-  setUser: (user) => set({ user, isAuthenticated: !!user }),
+  setUser: (user) => {
+    // IMPORTANT: Replace 'admin@example.com' with the email of the user you want to grant access.
+    if (user && user.email === 'theliquidivy@gmail.com') {
+      set({ user, isAuthenticated: true });
+    } else {
+      set({ user: null, isAuthenticated: false });
+      throw new Error('Unauthorized user. Please contact support.');
+    }
+  },
   logout: () => set({ user: null, isAuthenticated: false }),
 }));
