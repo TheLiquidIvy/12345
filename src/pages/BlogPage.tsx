@@ -75,10 +75,9 @@ function BlogPage() {
   };
 
   const handleEditPost = (values: z.infer<typeof formSchema>) => {
-    const updatedPosts = posts.map(post =>
-      post.id === editingPost!.id
-        ? { ...post, ...values }
-        : post
+    if (!editingPost) return;
+    const updatedPosts = posts.map(p =>
+      p.id === editingPost.id ? { ...p, ...values } : p
     );
     setPosts(updatedPosts);
     setEditingPost(null);
@@ -174,7 +173,7 @@ function BlogPage() {
                     </p>
                     <div className="flex items-center justify-between pt-2">
                       <span className="text-xs text-muted-foreground">
-                        {post.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                       </span>
                       <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80 group/btn p-0 h-auto">
                         <span className="flex items-center gap-1">
