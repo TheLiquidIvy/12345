@@ -28,7 +28,7 @@ function BlogPage() {
       title: 'Why Your Website Needs a Personality (Not Just a Template)',
       excerpt: 'Generic templates are killing the internet. Here\'s how to inject personality into your digital presence without sacrificing performance.',
       category: 'Design',
-      date: '2024-01-15',
+      date: new Date('2024-01-15'),
       readTime: '5 min read',
       image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&h=600&fit=crop',
       author: 'PixelPlaque Team',
@@ -38,7 +38,7 @@ function BlogPage() {
       title: 'The Algorithm Doesn\'t Care About Your Feelings (But We Do)',
       excerpt: 'SEO is ruthless, but understanding how search engines think can give you an unfair advantage. Let\'s decode the matrix.',
       category: 'SEO',
-      date: '2024-01-10',
+      date: new Date('2024-01-10'),
       readTime: '7 min read',
       image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&h=600&fit=crop',
       author: 'PixelPlaque Team',
@@ -56,7 +56,7 @@ function BlogPage() {
     const newPost = {
       id: posts.length + 1,
       ...values,
-      date: new Date().toISOString(),
+      date: new Date(),
       author: 'PixelPlaque Team',
     };
     setPosts([...posts, newPost]);
@@ -66,7 +66,7 @@ function BlogPage() {
   const handleEditPost = (values: z.infer<typeof formSchema>) => {
     const updatedPosts = posts.map(post =>
       post.id === editingPost.id
-        ? { ...post, ...values }
+        ? { ...post, ...values, id: editingPost.id }
         : post
     );
     setPosts(updatedPosts);
@@ -163,7 +163,7 @@ function BlogPage() {
                     </p>
                     <div className="flex items-center justify-between pt-2">
                       <span className="text-xs text-muted-foreground">
-                        {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        {post.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                       </span>
                       <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80 group/btn p-0 h-auto">
                         <span className="flex items-center gap-1">
