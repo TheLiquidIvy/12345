@@ -58,7 +58,6 @@
     --border: 250 20% 85%;
     --input: 250 20% 85%;
     --ring: 328 100% 54%;
-    --radius: 0.5rem;
     
     /* Custom cyberpunk variables */
     --glow-magenta: 328 100% 54%;
@@ -104,11 +103,39 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiGAAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAB+elRYdFJhdyBwcm9maWxlIHR5cGUgaXB0YwAAeJzj8gwIekxizswpys/Pz/vL8+sLMNh38vP39/f28/P39/f25+fn5+fnF84wAlcFbGE6+4e84bGA+J6Z5uXo6+Dk5+bk5+Tm5+fn5+fN54A0geZc3p4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4e3h4eja9d62d22b28c31e9c2f6d0f62243d704d9a10271b80c3e9862f92f69919f2d1844b2046522c09199d2146e29788f80459c3d4924c53c4314c1d43a5043884323c21c9a633c3a444a1b4142c15984483c3143c1c499c264c8d208985c531d1021d58288593003058440049440051888800588888009188880098888800a9888800b0888800b8888800b9888800c8888800d1888800d8888800e0888800e8888800f1888800f8888800');
+    opacity: 0.1;
+    z-index: 9999;
+    pointer-events: none;
+    animation: vhs-noise 0.1s infinite alternate;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', 'Inter', sans-serif;
     font-weight: 700;
+  }
+
+  button, a {
+    transition: all 0.2s ease-in-out;
+  }
+
+  button:hover, a:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px hsl(var(--glow-cyan)), 0 0 20px hsl(var(--glow-cyan));
+  }
+
+  button:active, a:active {
+    transform: translateY(0px);
   }
 }
 
@@ -259,6 +286,39 @@
     }
     100% {
       transform: translateY(100vh);
+    }
+  }
+
+  @keyframes vhs-noise {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    10% {
+      transform: translate(-1px, -1px);
+    }
+    20% {
+      transform: translate(1px, 1px);
+    }
+    30% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(2px, -2px);
+    }
+    50% {
+      transform: translate(-1px, 2px);
+    }
+    60% {
+      transform: translate(1px, -2px);
+    }
+    70% {
+      transform: translate(-2px, 1px);
+    }
+    80% {
+      transform: translate(2px, -1px);
+    }
+    90% {
+      transform: translate(-1px, -2px);
     }
   }
   
