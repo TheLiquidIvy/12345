@@ -114,6 +114,39 @@ export function CMSPage() {
 
   const [currentBlogPost, setCurrentBlogPost] = useState<BlogPost>(emptyBlogPost);
   const [currentProject, setCurrentProject] = useState<Project>(emptyProject);
+  const [lastSaved, setLastSaved] = useState<Date | null>(null);
+
+  useAutoSave(
+    currentBlogPost,
+    (post) => {
+      if (isEditing && activeTab === 'blog' && post.title) {
+        const now = new Date();
+        const savedPost = { ...post, updatedAt: now };
+        if (post.id) {
+          setBlogPosts(blogPosts.map(p => p.id === post.id ? savedPost : p));
+        }
+        setLastSaved(now);
+      }
+    },
+    3000,
+    isEditing && activeTab === 'blog' && currentBlogPost.id !== undefined
+  );
+
+  useAutoSave(
+    currentProject,
+    (project) => {
+      if (isEditing && activeTab === 'portfolio' && project.title) {
+        const now = new Date();
+        const savedProject = { ...project, updatedAt: now };
+        if (project.id) {
+          setProjects(projects.map(p => p.id === project.id ? savedProject : p));
+        }
+        setLastSaved(now);
+      }
+    },
+    3000,
+    isEditing && activeTab === 'portfolio' && currentProject.id !== undefined
+  );
 
   const generateSlug = (title: string) => {
     return title
@@ -504,33 +537,44 @@ export function CMSPage() {
                       </div>
                     </div>
 
-                    <div className="flex gap-2 pt-4">
-                      <Button
-                        variant="outline"
-                        onClick={() => {
-                          setIsEditing(false);
-                          setCurrentBlogPost(emptyBlogPost);
-                        }}
-                      >
-                        Cancel
-                      </Button>
-                      <Button
-                        variant="outline"
-                        onClick={() => handleSaveBlogPost('draft')}
-                      >
-                        <Save className="w-4 h-4 mr-2" />
-                        Save Draft
-                      </Button>
-                      <Button onClick={() => handleSaveBlogPost('published')}>
-                        Publish
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        onClick={() => setPreviewOpen(true)}
-                      >
-                        <Eye className="w-4 h-4 mr-2" />
-                        Preview
-                      </Button>
+                    <div className="flex items-center justify-between pt-4">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        {lastSaved && currentBlogPost.id && (
+                          <>
+                            <Clock className="w-4 h-4" />
+                            <span>Last saved {Math.floor((Date.now() - lastSaved.getTime()) / 1000)}s ago</span>
+                          </>
+                        )}
+                      </div>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            setIsEditing(false);
+                            setCurrentBlogPost(emptyBlogPost);
+                            setLastSaved(null);
+                          }}
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          variant="outline"
+                          onClick={() => handleSaveBlogPost('draft')}
+                        >
+                          <Save className="w-4 h-4 mr-2" />
+                          Save Draft
+                        </Button>
+                        <Button onClick={() => handleSaveBlogPost('published')}>
+                          Publish
+                        </Button>
+                        <Button
+                          variant="secondary"
+                          onClick={() => setPreviewOpen(true)}
+                        >
+                          <Eye className="w-4 h-4 mr-2" />
+                          Preview
+                        </Button>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -732,33 +776,44 @@ export function CMSPage() {
                       </div>
                     </div>
 
-                    <div className="flex gap-2 pt-4">
-                      <Button
-                        variant="outline"
-                        onClick={() => {
-                          setIsEditing(false);
-                          setCurrentProject(emptyProject);
-                        }}
-                      >
-                        Cancel
-                      </Button>
-                      <Button
-                        variant="outline"
-                        onClick={() => handleSaveProject('draft')}
-                      >
-                        <Save className="w-4 h-4 mr-2" />
-                        Save Draft
-                      </Button>
-                      <Button onClick={() => handleSaveProject('published')}>
-                        Publish
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        onClick={() => setPreviewOpen(true)}
-                      >
-                        <Eye className="w-4 h-4 mr-2" />
-                        Preview
-                      </Button>
+                    <div className="flex items-center justify-between pt-4">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        {lastSaved && currentProject.id && (
+                          <>
+                            <Clock className="w-4 h-4" />
+                            <span>Last saved {Math.floor((Date.now() - lastSaved.getTime()) / 1000)}s ago</span>
+                          </>
+                        )}
+                      </div>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            setIsEditing(false);
+                            setCurrentProject(emptyProject);
+                            setLastSaved(null);
+                          }}
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          variant="outline"
+                          onClick={() => handleSaveProject('draft')}
+                        >
+                          <Save className="w-4 h-4 mr-2" />
+                          Save Draft
+                        </Button>
+                        <Button onClick={() => handleSaveProject('published')}>
+                          Publish
+                        </Button>
+                        <Button
+                          variant="secondary"
+                          onClick={() => setPreviewOpen(true)}
+                        >
+                          <Eye className="w-4 h-4 mr-2" />
+                          Preview
+                        </Button>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
