@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
-import { Menu, X, Sun, Moon, Zap, User } from 'lucide-react';
+import { Menu, X, Sun, Moon, Zap, User, Facebook, Twitter, Instagram, Linkedin, Github, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useThemeStore } from '@/store/theme-store';
 import { useAuth } from '@/hooks/use-auth';
@@ -21,6 +21,7 @@ export function Layout() {
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/services', label: 'Services' },
+    { path: '/solutions', label: 'Solutions' },
     { path: '/portfolio', label: 'Portfolio' },
     { path: '/about', label: 'About' },
     { path: '/blog', label: 'Blog' },
@@ -195,9 +196,65 @@ export function Layout() {
               <p className="text-sm text-muted-foreground mb-4">
                 Code. Design. Disturb the Algorithm.
               </p>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-muted-foreground mb-4">
                 Crafting digital experiences that break the mold.
               </p>
+              <div className="flex gap-3">
+                <a 
+                  href="https://twitter.com/pixelplaque" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Twitter"
+                >
+                  <Twitter className="w-5 h-5" />
+                </a>
+                <a 
+                  href="https://facebook.com/pixelplaque" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a 
+                  href="https://instagram.com/pixelplaque" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a 
+                  href="https://linkedin.com/company/pixelplaque" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a 
+                  href="https://github.com/pixelplaque" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github className="w-5 h-5" />
+                </a>
+                <a 
+                  href="https://youtube.com/@pixelplaque" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="YouTube"
+                >
+                  <Youtube className="w-5 h-5" />
+                </a>
+              </div>
             </div>
 
             {/* Quick Links */}

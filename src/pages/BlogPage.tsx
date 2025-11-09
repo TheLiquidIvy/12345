@@ -1,12 +1,14 @@
 
 import { useState } from 'react';
-import { Calendar, Clock, ArrowRight, PlusCircle, Edit, Trash2 } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, PlusCircle, Edit, Trash2, Share2, Twitter, Facebook, Linkedin, Link as LinkIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { HighlightedText } from '@/lib/highlight-words';
 import { useAuth } from '@/hooks/use-auth';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { PostForm } from "@/components/PostForm";
+import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -34,6 +36,7 @@ function BlogPage() {
   const [editingPost, setEditingPost] = useState<Post | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+  const { toast } = useToast();
 
   const [posts, setPosts] = useState<Post[]>([
     {
@@ -93,6 +96,36 @@ function BlogPage() {
 
   const handleDeletePost = (id: number) => {
     setPosts(posts.filter(post => post.id !== id));
+  };
+
+  const sharePost = (platform: string, post: Post) => {
+    const url = window.location.href;
+    const text = post.title;
+    
+    let shareUrl = '';
+    
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(url);
+        toast({
+          title: 'Link copied!',
+          description: 'Post link copied to clipboard',
+        });
+        return;
+    }
+    
+    if (shareUrl) {
+      window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
   };
 
   return (
@@ -226,12 +259,78 @@ function BlogPage() {
         </div>
       </section>
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-        <DialogContent>
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
           {selectedPost && (
-            <>
-              <img src={selectedPost.image} alt={selectedPost.title} className="w-full h-auto object-cover" />
-              <p className="text-sm text-muted-foreground mt-4">{selectedPost.excerpt}</p>
-            </>
+            <div className="space-y-4">
+              <DialogHeader>
+                <DialogTitle className="text-2xl">{selectedPost.title}</DialogTitle>
+              </DialogHeader>
+              
+              <div className="flex items-center gap-4 text-sm text-muted-foreground border-b pb-4">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  {selectedPost.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4" />
+                  {selectedPost.readTime}
+                </div>
+                <Badge variant="outline">{selectedPost.category}</Badge>
+              </div>
+              
+              <img 
+                src={selectedPost.image} 
+                alt={selectedPost.title} 
+                className="w-full h-auto object-cover rounded-lg"
+              />
+              
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {selectedPost.excerpt}
+              </p>
+              
+              <div className="border-t pt-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-semibold flex items-center gap-2">
+                    <Share2 className="w-4 h-4" />
+                    Share this post:
+                  </span>
+                  <div className="flex gap-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => sharePost('twitter', selectedPost)}
+                      className="hover:bg-sky-500/10 hover:border-sky-500"
+                    >
+                      <Twitter className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => sharePost('facebook', selectedPost)}
+                      className="hover:bg-blue-500/10 hover:border-blue-500"
+                    >
+                      <Facebook className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => sharePost('linkedin', selectedPost)}
+                      className="hover:bg-blue-700/10 hover:border-blue-700"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => sharePost('copy', selectedPost)}
+                      className="hover:bg-primary/10 hover:border-primary"
+                    >
+                      <LinkIcon className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
           )}
         </DialogContent>
       </Dialog>
