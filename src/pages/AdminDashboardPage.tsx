@@ -18,14 +18,25 @@ function AdminDashboardPage() {
           <Button onClick={logout} variant="destructive">Logout</Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Content Management</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Manage blog posts and portfolio items with the WYSIWYG editor.</p>
+              <Button asChild className="mt-4">
+                <Link to="/admin/cms">Open CMS</Link>
+              </Button>
+            </CardContent>
+          </Card>
           <Card>
             <CardHeader>
               <CardTitle>Portfolio Management</CardTitle>
             </CardHeader>
             <CardContent>
-              <p>Manage your portfolio projects.</p>
-              <Button asChild className="mt-4">
+              <p>View your portfolio projects.</p>
+              <Button asChild className="mt-4" variant="outline">
                 <Link to="/portfolio">Go to Portfolio</Link>
               </Button>
             </CardContent>
@@ -35,8 +46,8 @@ function AdminDashboardPage() {
               <CardTitle>Blog Management</CardTitle>
             </CardHeader>
             <CardContent>
-              <p>Manage your blog posts.</p>
-              <Button asChild className="mt-4">
+              <p>View your blog posts.</p>
+              <Button asChild className="mt-4" variant="outline">
                 <Link to="/blog">Go to Blog</Link>
               </Button>
             </CardContent>

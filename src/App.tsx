@@ -13,6 +13,7 @@ import DisclaimerPage from '@/pages/DisclaimerPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import { LoginPage } from '@/pages/LoginPage';
 import AdminDashboardPage from '@/pages/AdminDashboardPage';
+import { CMSPage } from '@/pages/CMSPage';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+            <Route path="/admin/cms" element={<CMSPage />} />
           </Route>
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />

@@ -1,6 +1,7 @@
 
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 // TODO: Replace with your firebase credentials
 const firebaseConfig = {
@@ -15,3 +16,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+export const storage = getStorage(app);
+
+export async function uploadImage(file: File, path: string): Promise<string> {
+  const storageRef = ref(storage, path);
+  const snapshot = await uploadBytes(storageRef, file);
+  const downloadURL = await getDownloadURL(snapshot.ref);
+  return downloadURL;
+}
+
+export function generateImagePath(type: 'blog' | 'portfolio', fileName: string): string {
+  const timestamp = Date.now();
+  const sanitizedName = fileName.replace(/[^a-zA-Z0-9.-]/g, '_');
+  return `${type}/${timestamp}_${sanitizedName}`;
+}
