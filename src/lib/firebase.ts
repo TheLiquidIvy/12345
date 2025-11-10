@@ -23,6 +23,12 @@ export const auth = getAuth(app);
 export const storage = getStorage(app);
 export const analytics = getAnalytics(app);
 
+export function generateImagePath(type: 'blog' | 'portfolio', fileName: string): string {
+  const timestamp = new Date().getTime();
+  const randomString = Math.random().toString(36).substring(2, 8);
+  return `${type}-images/${timestamp}_${randomString}_${fileName}`;
+}
+
 export async function uploadImage(file: File, path: string): Promise<string> {
   const storageRef = ref(storage, path);
   const snapshot = await uploadBytes(storageRef, file);

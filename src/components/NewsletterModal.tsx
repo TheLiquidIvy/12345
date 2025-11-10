@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -31,7 +31,7 @@ export function NewsletterModal() {
   };
 
   // Logic to show the modal after a delay
-  useState(() => {
+  useEffect(() => {
     const timer = setTimeout(() => {
       setOpen(true);
     }, 5000); // 5 seconds
