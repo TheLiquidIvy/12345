@@ -11,8 +11,8 @@ export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   isAuthenticated: false,
   setUser: (user) => {
-    // IMPORTANT: Replace 'admin@example.com' with the email of the user you want to grant access.
-    if (user && user.email === 'admin@example.com') {
+    // IMPORTANT: Replace 'pixelplaque@gmail.com' with the email of the user you want to grant access.
+    if (user && user.email === 'pixelplaque@gmail.com') {
       set({ user, isAuthenticated: true });
     } else {
       set({ user: null, isAuthenticated: false });
