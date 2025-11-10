@@ -52,6 +52,18 @@ function AdminDashboardPage() {
               </Button>
             </CardContent>
           </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Subscribers</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Manage your newsletter subscribers.</p>
+              <Button asChild className="mt-4">
+                <Link to="/admin/subscribers">Manage Subscribers</Link>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>

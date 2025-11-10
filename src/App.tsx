@@ -19,6 +19,7 @@ import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { NewsletterModal } from '@/components/NewsletterModal';
+import SubscribersPage from '@/pages/SubscribersPage';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
             <Route path="/admin/cms" element={<CMSPage />} />
+            <Route path="/admin/subscribers" element={<SubscribersPage />} />
           </Route>
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
