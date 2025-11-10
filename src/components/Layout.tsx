@@ -40,7 +40,7 @@ export function Layout() {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group">
               <div className="relative">
-                <img src="/logo.png" alt="PixelPlaque Logo" className="w-8 h-8 text-primary transition-all duration-300 group-hover:text-secondary" />
+                <img src="https://i.ibb.co/q391gvkv/Business-Card-Creative-Director-1-removebg-preview-removebg-preview.png" alt="PixelPlaque Logo" className="w-8 h-8 text-primary transition-all duration-300 group-hover:text-secondary" />
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
@@ -192,7 +192,7 @@ export function Layout() {
             {/* Brand Column */}
             <div className="col-span-1 md:col-span-1">
                <div className="flex items-center gap-2 mb-4">
-                <img src="/logo.png" alt="PixelPlaque Logo" className="w-6 h-6 text-primary" />
+                <img src="https://i.ibb.co/q391gvkv/Business-Card-Creative-Director-1-removebg-preview-removebg-preview.png" alt="PixelPlaque Logo" className="w-6 h-6 text-primary" />
                 <span className="text-lg font-bold">PixelPlaque</span>
               </div>
               <p className="text-sm text-muted-foreground mb-4">
