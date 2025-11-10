@@ -69,7 +69,7 @@ export const blogPostTags = sqliteTable('blog_post_tags', {
 
 export const projectTags = sqliteTable('project_tags', {
   id: integer('id').primaryKey({ autoIncrement: true }),
-  projectId: integer('project_id').notNull().references(() => projects..id, { onDelete: 'cascade' }),
+  projectId: integer('project_id').notNull().references(() => projects.id, { onDelete: 'cascade' }),
   tagId: integer('tag_id').notNull().references(() => tags.id, { onDelete: 'cascade' }),
 });
 
