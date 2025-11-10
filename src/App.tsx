@@ -20,7 +20,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { NewsletterModal } from '@/components/NewsletterModal';
 import SubscribersPage from '@/pages/SubscribersPage';
-import SolutionsManagementPage from '@/pages/SolutionsManagementPage';
+import { SolutionsManagementPage } from '@/pages/SolutionsManagementPage';
 
 function App() {
   return (
