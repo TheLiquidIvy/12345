@@ -64,6 +64,18 @@ function AdminDashboardPage() {
               </Button>
             </CardContent>
           </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Solutions Management</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Add, edit, or remove solutions.</p>
+              <Button asChild className="mt-4">
+                <Link to="/admin/solutions">Manage Solutions</Link>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
