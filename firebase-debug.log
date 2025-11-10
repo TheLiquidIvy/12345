@@ -1,16 +1,16 @@
-[debug] [2025-11-10T15:55:37.115Z] ----------------------------------------------------------------------
-[debug] [2025-11-10T15:55:37.119Z] Command:       /nix/store/ixbb20farqh1f4fqbmsn6b1ixn8mc8ij-nodejs-20.18.1/bin/node /home/user/.global_modules/bin/firebase init
-[debug] [2025-11-10T15:55:37.119Z] CLI Version:   14.24.1
-[debug] [2025-11-10T15:55:37.120Z] Platform:      linux
-[debug] [2025-11-10T15:55:37.120Z] Node Version:  v20.18.1
-[debug] [2025-11-10T15:55:37.120Z] Time:          Mon Nov 10 2025 15:55:37 GMT+0000 (Coordinated Universal Time)
-[debug] [2025-11-10T15:55:37.120Z] ----------------------------------------------------------------------
+[debug] [2025-11-10T16:00:15.486Z] ----------------------------------------------------------------------
+[debug] [2025-11-10T16:00:15.488Z] Command:       /nix/store/ixbb20farqh1f4fqbmsn6b1ixn8mc8ij-nodejs-20.18.1/bin/node /home/user/.global_modules/bin/firebase init
+[debug] [2025-11-10T16:00:15.488Z] CLI Version:   14.24.1
+[debug] [2025-11-10T16:00:15.488Z] Platform:      linux
+[debug] [2025-11-10T16:00:15.488Z] Node Version:  v20.18.1
+[debug] [2025-11-10T16:00:15.488Z] Time:          Mon Nov 10 2025 16:00:15 GMT+0000 (Coordinated Universal Time)
+[debug] [2025-11-10T16:00:15.488Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2025-11-10T15:55:37.123Z] Checked if tokens are valid: true, expires at: 1762793717487
-[debug] [2025-11-10T15:55:37.124Z] Checked if tokens are valid: true, expires at: 1762793717487
-[debug] [2025-11-10T15:55:37.126Z] >>> [apiv2][query] GET https://monospace-pa.googleapis.com/v1/workspaces/pixelplaquefbasegit-90288676 [none]
-[debug] [2025-11-10T15:55:37.772Z] <<< [apiv2][status] GET https://monospace-pa.googleapis.com/v1/workspaces/pixelplaquefbasegit-90288676 200
-[debug] [2025-11-10T15:55:37.772Z] <<< [apiv2][body] GET https://monospace-pa.googleapis.com/v1/workspaces/pixelplaquefbasegit-90288676 {"workspaceId":"pixelplaquefbasegit-90288676","name":"pixelplaquefbase.git","workspaceRedirectUrl":"firebase-pixelplaquefbasegit-1762771266052.cluster-uf6urqn4lned4spwk4xorq6bpo.cloudworkstations.dev","status":"WORKSPACE_STATUS_RUNNING","lastAccessDatetime":"2025-11-10T15:39:39.803385Z","workspaceTemplate":"WORKSPACE_TEMPLATE_FLUTTER","owner":"SELF","serviceAccountEmail":"msp-2922763369733986106@monospace-per-ws-sa-2.iam.gserviceaccount.com","gitRepoUrl":"https://github.com/TheLiquidIvy/12345.git","enableNix":true,"ownerEmail":"theliquidivy@gmail.com","workstationAccessToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Nsb3VkLmdvb2dsZS5jb20vd29ya3N0YXRpb25zIiwiYXVkIjoiZmlyZWJhc2UtcGl4ZWxwbGFxdWVmYmFzZWdpdC0xNzYyNzcxMjY2MDUyLmNsdXN0ZXItdWY2dXJxbjRsbmVkNHNwd2s0eG9ycTZicG8uY2xvdWR3b3Jrc3RhdGlvbnMuZGV2IiwiaWF0IjoxNzYyNzkwMTM3LCJleHAiOjE3NjI4NzY1Mzd9.okGnjFyt0xUHJuwGGMMLGBcrsdeXtv8OGi7BO_rLtlTN_PGyRqXi71g7SjnJUmjAv_4mPRjWED8kCgW92OoZ42fU-Eq0oxrOJ3LehLxWjLFMjuSe9m16kE12zFbcPxs51YJOOWAlBDbGB3ajgIp4mmKE6qKDfP3f7__bTHekWoSDmiaokfVa619oxcSyNeGMsxXW34EI_3jYM03uBnN8pX1hQ6_zNYQ8VMHEDGimh53ja09KuhIn8TrhJxxBaQzVIfhi_lNCvL_lAusTpEKusfwI-fApCl3i3_fJ4Lppb4OWyXzYD-25eCEAc9be2Gs3Hdy8DYJ2Q7LdmqZ4MOzMsw","firebaseProjectId":"pixelpfirebase"}
+[debug] [2025-11-10T16:00:15.492Z] Checked if tokens are valid: true, expires at: 1762793717487
+[debug] [2025-11-10T16:00:15.492Z] Checked if tokens are valid: true, expires at: 1762793717487
+[debug] [2025-11-10T16:00:15.494Z] >>> [apiv2][query] GET https://monospace-pa.googleapis.com/v1/workspaces/pixelplaquefbasegit-90288676 [none]
+[debug] [2025-11-10T16:00:16.266Z] <<< [apiv2][status] GET https://monospace-pa.googleapis.com/v1/workspaces/pixelplaquefbasegit-90288676 200
+[debug] [2025-11-10T16:00:16.266Z] <<< [apiv2][body] GET https://monospace-pa.googleapis.com/v1/workspaces/pixelplaquefbasegit-90288676 {"workspaceId":"pixelplaquefbasegit-90288676","name":"pixelplaquefbase.git","workspaceRedirectUrl":"firebase-pixelplaquefbasegit-1762771266052.cluster-uf6urqn4lned4spwk4xorq6bpo.cloudworkstations.dev","status":"WORKSPACE_STATUS_RUNNING","lastAccessDatetime":"2025-11-10T15:39:39.803385Z","workspaceTemplate":"WORKSPACE_TEMPLATE_FLUTTER","owner":"SELF","serviceAccountEmail":"msp-2922763369733986106@monospace-per-ws-sa-2.iam.gserviceaccount.com","gitRepoUrl":"https://github.com/TheLiquidIvy/12345.git","enableNix":true,"ownerEmail":"theliquidivy@gmail.com","workstationAccessToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Nsb3VkLmdvb2dsZS5jb20vd29ya3N0YXRpb25zIiwiYXVkIjoiZmlyZWJhc2UtcGl4ZWxwbGFxdWVmYmFzZWdpdC0xNzYyNzcxMjY2MDUyLmNsdXN0ZXItdWY2dXJxbjRsbmVkNHNwd2s0eG9ycTZicG8uY2xvdWR3b3Jrc3RhdGlvbnMuZGV2IiwiaWF0IjoxNzYyNzkwNDE2LCJleHAiOjE3NjI4NzY4MTZ9.r8ccRP5_QebjatuSWuLB512IGJRuLkBcIQ3wZh-ujxCz6yhERT6b1tflZyQnxB6YI_jdpDvPLc0p_ZIL02yCuEsBcqp6YlJ5Zgh0aZR9aMW6pmvWSLOdEaDExKujjVnpceJCJdvZUEOL1JoWi_Kwzit1tAJsSw72lUh9TDvCjoOk0DL7i-dscMqb1-oAzT7wByw3sHg_y51INzMNHh6beRSV8DRmGlBJP5o6QDf6uc3hW_vdTHnFZ09M6Mg7G9qVrsLKJvwIiGhVVmPj8Ok46EJtzPRXLuqtmFJzrTRX--mlbISZqpJlgRdAhFDbqY6VBtRJx1FWAtnYZMRgNnQ9bA","firebaseProjectId":"pixelpfirebase"}
 [info] 
      ######## #### ########  ######## ########     ###     ######  ########
      ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
@@ -28,50 +28,18 @@ You're about to initialize a Firebase project in this directory:
 [info] First, let's associate this project directory with a Firebase project.
 [info] You can create multiple project aliases by running firebase use --add, 
 [info] 
-[debug] [2025-11-10T15:57:16.118Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
-[debug] [2025-11-10T15:57:16.119Z] > authorizing via signed-in user (theliquidivy@gmail.com)
-[debug] [2025-11-10T15:57:16.119Z] Checked if tokens are valid: true, expires at: 1762793717487
-[debug] [2025-11-10T15:57:16.119Z] Checked if tokens are valid: true, expires at: 1762793717487
-[debug] [2025-11-10T15:57:16.119Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/pixelpfirebase [none]
-[debug] [2025-11-10T15:57:16.592Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/pixelpfirebase 200
-[debug] [2025-11-10T15:57:16.592Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/pixelpfirebase {"projectId":"pixelpfirebase","projectNumber":"853848520433","displayName":"pixelpfirebase","name":"projects/pixelpfirebase","resources":{"hostingSite":"pixelpfirebase"},"state":"ACTIVE","etag":"1_7587d2e0-c11a-420c-b24a-58bf37dd19ed"}
+[debug] [2025-11-10T16:00:22.236Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-10T16:00:22.237Z] > authorizing via signed-in user (theliquidivy@gmail.com)
+[debug] [2025-11-10T16:00:22.237Z] Checked if tokens are valid: true, expires at: 1762793717487
+[debug] [2025-11-10T16:00:22.237Z] Checked if tokens are valid: true, expires at: 1762793717487
+[debug] [2025-11-10T16:00:22.238Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/pixelpfirebase [none]
+[debug] [2025-11-10T16:00:22.693Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/pixelpfirebase 200
+[debug] [2025-11-10T16:00:22.693Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/pixelpfirebase {"projectId":"pixelpfirebase","projectNumber":"853848520433","displayName":"pixelpfirebase","name":"projects/pixelpfirebase","resources":{"hostingSite":"pixelpfirebase"},"state":"ACTIVE","etag":"1_7587d2e0-c11a-420c-b24a-58bf37dd19ed"}
 [info] i  Using project pixelpfirebase (pixelpfirebase) . 
 [info] 
-=== Functions Setup
-[debug] [2025-11-10T15:57:16.605Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
-[debug] [2025-11-10T15:57:16.605Z] > authorizing via signed-in user (theliquidivy@gmail.com)
-[debug] [2025-11-10T15:57:16.605Z] [iam] checking project pixelpfirebase for permissions ["firebase.projects.get"]
-[debug] [2025-11-10T15:57:16.606Z] Checked if tokens are valid: true, expires at: 1762793717487
-[debug] [2025-11-10T15:57:16.606Z] Checked if tokens are valid: true, expires at: 1762793717487
-[debug] [2025-11-10T15:57:16.606Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/pixelpfirebase:testIamPermissions [none]
-[debug] [2025-11-10T15:57:16.606Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/pixelpfirebase:testIamPermissions x-goog-quota-user=projects/pixelpfirebase
-[debug] [2025-11-10T15:57:16.606Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/pixelpfirebase:testIamPermissions {"permissions":["firebase.projects.get"]}
-[debug] [2025-11-10T15:57:16.841Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/pixelpfirebase:testIamPermissions 200
-[debug] [2025-11-10T15:57:16.841Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/pixelpfirebase:testIamPermissions {"permissions":["firebase.projects.get"]}
-[debug] [2025-11-10T15:57:16.842Z] Checked if tokens are valid: true, expires at: 1762793717487
-[debug] [2025-11-10T15:57:16.842Z] Checked if tokens are valid: true, expires at: 1762793717487
-[debug] [2025-11-10T15:57:16.842Z] Checked if tokens are valid: true, expires at: 1762793717487
-[debug] [2025-11-10T15:57:16.842Z] Checked if tokens are valid: true, expires at: 1762793717487
-[debug] [2025-11-10T15:57:16.843Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/pixelpfirebase/services/cloudfunctions.googleapis.com [none]
-[debug] [2025-11-10T15:57:16.843Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/pixelpfirebase/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/pixelpfirebase
-[debug] [2025-11-10T15:57:16.844Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/pixelpfirebase/services/runtimeconfig.googleapis.com [none]
-[debug] [2025-11-10T15:57:16.844Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/pixelpfirebase/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/pixelpfirebase
-[debug] [2025-11-10T15:57:17.819Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/pixelpfirebase/services/runtimeconfig.googleapis.com 200
-[debug] [2025-11-10T15:57:17.819Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/pixelpfirebase/services/runtimeconfig.googleapis.com [omitted]
-[debug] [2025-11-10T15:57:17.868Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/pixelpfirebase/services/cloudfunctions.googleapis.com 200
-[debug] [2025-11-10T15:57:17.868Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/pixelpfirebase/services/cloudfunctions.googleapis.com [omitted]
-[debug] [2025-11-10T15:57:17.868Z] Checked if tokens are valid: true, expires at: 1762793717487
-[debug] [2025-11-10T15:57:17.869Z] Checked if tokens are valid: true, expires at: 1762793717487
-[debug] [2025-11-10T15:57:17.869Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/pixelpfirebase/services/cloudfunctions.googleapis.com:enable [none]
-[debug] [2025-11-10T15:57:17.869Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/pixelpfirebase/services/cloudfunctions.googleapis.com:enable x-goog-quota-user=projects/pixelpfirebase
-[debug] [2025-11-10T15:57:18.242Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/pixelpfirebase/services/cloudfunctions.googleapis.com:enable 200
-[debug] [2025-11-10T15:57:18.242Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/pixelpfirebase/services/cloudfunctions.googleapis.com:enable [omitted]
-[info] Let's create a new codebase for your functions.
-[info] A directory corresponding to the codebase will be created in your project
-[info] with sample code pre-configured.
-
-[info] See https://firebase.google.com/docs/functions/organize-functions for
-[info] more information on organizing your functions using codebases.
-
-[info] Functions can be deployed with firebase deploy.
-
+=== Hosting Setup
+[debug] [2025-11-10T16:00:22.702Z] Checked if tokens are valid: true, expires at: 1762793717487
+[debug] [2025-11-10T16:00:22.702Z] Checked if tokens are valid: true, expires at: 1762793717487
+[debug] [2025-11-10T16:00:22.702Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/pixelpfirebase [none]
+[debug] [2025-11-10T16:00:22.976Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/pixelpfirebase 200
+[debug] [2025-11-10T16:00:22.976Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/pixelpfirebase {"projectId":"pixelpfirebase","projectNumber":"853848520433","displayName":"pixelpfirebase","name":"projects/pixelpfirebase","resources":{"hostingSite":"pixelpfirebase"},"state":"ACTIVE","etag":"1_7587d2e0-c11a-420c-b24a-58bf37dd19ed"}
