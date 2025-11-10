@@ -18,6 +18,7 @@ import { CMSPage } from '@/pages/CMSPage';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { NewsletterModal } from '@/components/NewsletterModal';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
+        <NewsletterModal />
       </BrowserRouter>
       <Toaster />
     </TooltipProvider>
