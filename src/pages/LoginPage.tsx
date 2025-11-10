@@ -11,8 +11,8 @@ import { useToast } from '@/hooks/use-toast';
 import { Lock, Mail, Sparkles } from 'lucide-react';
 
 export function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('pixelplaque@gmail.com');
+  const [password, setPassword] = useState('Skyler@2905');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { setUser } = useAuthStore();
