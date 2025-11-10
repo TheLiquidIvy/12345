@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { useThemeStore } from '@/store/theme-store';
 import { useAuth } from '@/hooks/use-auth';
 import { cn } from '@/lib/utils';
+import ScrollToTopButton from './ScrollToTopButton';
+import ScrollToTopOnMount from './ScrollToTopOnMount';
 
 export function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -30,6 +32,7 @@ export function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollToTopOnMount />
       {/* Header/Navigation */}
       <header className="sticky top-0 z-50 border-b border-border/50 backdrop-blur-lg bg-background/80">
         <nav className="container mx-auto px-4 py-4">
@@ -37,8 +40,7 @@ export function Layout() {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group">
               <div className="relative">
-                <Zap className="w-8 h-8 text-primary transition-all duration-300 group-hover:text-secondary" />
-                <Zap className="w-8 h-8 text-cyan-500 absolute top-0 left-0 opacity-0 group-hover:opacity-50 blur-sm transition-all duration-300" />
+                <img src="/logo.png" alt="PixelPlaque Logo" className="w-8 h-8 text-primary transition-all duration-300 group-hover:text-secondary" />
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
@@ -189,8 +191,8 @@ export function Layout() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Brand Column */}
             <div className="col-span-1 md:col-span-1">
-              <div className="flex items-center gap-2 mb-4">
-                <Zap className="w-6 h-6 text-primary" />
+               <div className="flex items-center gap-2 mb-4">
+                <img src="/logo.png" alt="PixelPlaque Logo" className="w-6 h-6 text-primary" />
                 <span className="text-lg font-bold">PixelPlaque</span>
               </div>
               <p className="text-sm text-muted-foreground mb-4">
@@ -312,6 +314,7 @@ export function Layout() {
           </div>
         </div>
       </footer>
+      <ScrollToTopButton />
     </div>
   );
 }
