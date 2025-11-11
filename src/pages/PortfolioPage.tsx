@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { ExternalLink, PlusCircle, Edit, Trash2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -8,14 +7,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ProjectForm } from "@/components/ProjectForm";
 import { z } from 'zod';
-
-const formSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  category: z.string().min(1, "Category is required"),
-  description: z.string().min(1, "Description is required"),
-  image: z.string().url("Invalid URL"),
-  tags: z.string(),
-});
+import { projectFormSchema } from '@/lib/validators';
 
 interface Project {
   id: number;
@@ -99,7 +91,7 @@ function PortfolioPage() {
     ? projects
     : projects.filter(project => project.category === selectedCategory);
 
-  const handleAddProject = (values: z.infer<typeof formSchema>) => {
+  const handleAddProject = (values: z.infer<typeof projectFormSchema>) => {
     const newProject: Project = {
       id: projects.length + 1,
       title: values.title,
@@ -113,7 +105,7 @@ function PortfolioPage() {
     setOpen(false);
   };
 
-  const handleEditProject = (values: z.infer<typeof formSchema>) => {
+  const handleEditProject = (values: z.infer<typeof projectFormSchema>) => {
     const updatedProjects = projects.map(p => 
       p.id === editingProject!.id ? { ...p, ...values, tags: values.tags.split(',').map(tag => tag.trim()) } : p
     );
@@ -266,6 +258,9 @@ function PortfolioPage() {
       </section>
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
         <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{selectedProject?.title}</DialogTitle>
+          </DialogHeader>
           {selectedProject && (
             <>
               <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-auto object-cover" />

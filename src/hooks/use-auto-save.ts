@@ -6,7 +6,7 @@ export function useAutoSave<T>(
   delay: number = 3000,
   enabled: boolean = true
 ) {
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
   const previousDataRef = useRef<T>(data);
 
   useEffect(() => {
