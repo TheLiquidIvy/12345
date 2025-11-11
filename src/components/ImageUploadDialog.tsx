@@ -3,9 +3,10 @@ import { useDropzone } from 'react-dropzone';
 import Cropper from 'react-easy-crop';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Upload, Crop } from 'lucide-react';
+import { Upload } from 'lucide-react';
 import { uploadImage, generateImagePath } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
+import { Area } from 'react-easy-crop';
 
 interface ImageUploadDialogProps {
   open: boolean;
@@ -19,7 +20,7 @@ export function ImageUploadDialog({ open, onClose, onImageUploaded, type }: Imag
   const [preview, setPreview] = useState<string>('');
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
   const [uploading, setUploading] = useState(false);
   const { toast } = useToast();
 
@@ -43,7 +44,7 @@ export function ImageUploadDialog({ open, onClose, onImageUploaded, type }: Imag
     multiple: false,
   });
 
-  const onCropComplete = useCallback((croppedArea: any, croppedAreaPixels: any) => {
+  const onCropComplete = useCallback((croppedArea: Area, croppedAreaPixels: Area) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
@@ -77,9 +78,11 @@ export function ImageUploadDialog({ open, onClose, onImageUploaded, type }: Imag
       croppedAreaPixels.height
     );
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       canvas.toBlob((blob) => {
-        if (!blob) throw new Error('Canvas is empty');
+        if (!blob) {
+          return reject(new Error('Canvas is empty'));
+        }
         const file = new File([blob], selectedFile.name, {
           type: selectedFile.type,
         });
@@ -104,10 +107,10 @@ export function ImageUploadDialog({ open, onClose, onImageUploaded, type }: Imag
       });
       
       handleClose();
-    } catch (error: any) {
+    } catch (error) {
       toast({
         title: 'Error',
-        description: error.message || 'Failed to upload image',
+        description: (error as Error).message || 'Failed to upload image',
         variant: 'destructive',
       });
     } finally {

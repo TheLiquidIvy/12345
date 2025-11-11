@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
-import { Menu, X, Sun, Moon, Zap, User, Facebook, Twitter, Instagram, Linkedin, Github, Youtube } from 'lucide-react';
+import { Menu, X, Sun, Moon, User, Facebook, Twitter, Instagram, Linkedin, Github, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useThemeStore } from '@/store/theme-store';
 import { useAuth } from '@/hooks/use-auth';

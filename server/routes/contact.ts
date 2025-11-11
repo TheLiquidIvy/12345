@@ -4,7 +4,7 @@ import { Router } from 'express';
 const router = Router();
 
 router.post('/', (req, res) => {
-  const { name, email, company, service, message } = req.body;
+  const { name, email, message } = req.body;
 
   // Basic validation
   if (!name || !email || !message) {
