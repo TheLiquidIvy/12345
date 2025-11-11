@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,7 +12,7 @@ import { WysiwygEditor } from '@/components/WysiwygEditor';
 import { ImageUploadDialog } from '@/components/ImageUploadDialog';
 import { 
   PlusCircle, Search, Edit, Trash2, Eye, Save, 
-  FileText, Briefcase, Upload, X, Clock 
+  FileText, Briefcase, Upload, Clock 
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { HighlightedText } from '@/lib/highlight-words';

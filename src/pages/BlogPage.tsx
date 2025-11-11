@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Calendar, Clock, ArrowRight, PlusCircle, Edit, Trash2, Share2, Twitter, Facebook, Linkedin, Link as LinkIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -10,14 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { PostForm } from "@/components/PostForm";
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
-
-const formSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  excerpt: z.string().min(1, "Excerpt is required"),
-  category: z.string().min(1, "Category is required"),
-  image: z.string().url("Invalid URL"),
-  readTime: z.string().min(1, "Read time is required"),
-});
+import { postFormSchema } from '@/lib/validators';
 
 interface Post {
   id: number;
@@ -68,7 +60,7 @@ function BlogPage() {
     ? posts
     : posts.filter(post => post.category === selectedCategory);
 
-  const handleAddPost = (values: z.infer<typeof formSchema>) => {
+  const handleAddPost = (values: z.infer<typeof postFormSchema>) => {
     const newPost: Post = {
       id: posts.length + 1,
       title: values.title,
@@ -83,7 +75,7 @@ function BlogPage() {
     setOpen(false);
   };
 
-  const handleEditPost = (values: z.infer<typeof formSchema>) => {
+  const handleEditPost = (values: z.infer<typeof postFormSchema>) => {
     const updatedPosts = posts.map(post =>
       post.id === editingPost!.id
         ? { ...post, ...values, date: new Date(post.date) }
