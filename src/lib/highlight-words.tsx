@@ -1,4 +1,4 @@
-import { highlightRandomWords } from './text-utils';
+import { highlightRandomWords } from './text-utils.tsx';
 
 /**
  * Component wrapper for highlighted text
